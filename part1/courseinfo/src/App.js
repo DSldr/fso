@@ -3,31 +3,45 @@ import React from 'react'
 const Header = (props) => {
   return (
     <div>
+      <h1>
       {props.course}
+      </h1>
     </div>
   )
 }
 
 
-
+//{props.parts[0].name} {props.parts[0].exercises}
 const Content = (props) => {
+
+  let partsArray = props.parts
+
   return (
     <>
-      {props.name} {props.numberofexercises}
+      <p>
+        {partsArray[0].name} {partsArray[0].exercises}
+      </p>
+      <p>
+      {partsArray[1].name} {partsArray[1].exercises}
+      </p>
+      <p>
+      {partsArray[2].name} {partsArray[2].exercises}
+      </p>
     </>
   )
 }
-
 
 
 const Total = (props) => {
+
+  let partsArray = props.parts
+  let sumResult = partsArray[0].exercises + partsArray[1].exercises + partsArray[2].exercises
   return (
     <>
-      {parseInt(props.ex1) + parseInt(props.ex2) + parseInt(props.ex3)}
+      <p>Number of exercises {sumResult}</p>
     </>
   )
 }
-
 
 const App = () => {
 
@@ -49,19 +63,11 @@ const App = () => {
 
   return (
     <div>
-      <h1><Header course={course}/></h1>
-      <p>
-        <Content name={parts[0].name} numberofexercises={parts[0].exercises}/>
-      </p>
-      <p>
-        <Content name={parts[1].name }numberofexercises={parts[1].exercises}/>
-      </p>
-      <p>
-        <Content name={parts[2].name} numberofexercises={parts[2].exercises}/>
-      </p>
-      <p>Number of exercises <Total ex1={parts[0].exercises} ex2={parts[1].exercises} ex3={parts[2].exercises}/></p>
+      <Header course={course}/>
+      <Content parts={parts}/>
+      <Total parts={parts}/>
     </div>
   )
 }
-
+//
 export default App
